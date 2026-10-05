@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+.article-markdown { line-height: 1.85; overflow-wrap: anywhere; }
+.article-markdown h1, .article-markdown h2, .article-markdown h3 { margin: 1.4em 0 .55em; font-weight: 750; line-height: 1.25; color: #292524; }
+.article-markdown h1 { font-size: 1.8rem; }
+.article-markdown h2 { font-size: 1.5rem; }
+.article-markdown h3 { font-size: 1.2rem; }
+.article-markdown p { margin: .8em 0; }
+.article-markdown ul { margin: .8em 0; padding-left: 1.5rem; list-style: disc; }
+.article-markdown li { margin: .3em 0; }
+.article-markdown blockquote { margin: 1em 0; border-left: 4px solid #d97706; padding: .4em 1em; background: #fffbeb; color: #57534e; }
+.article-markdown code { border-radius: .35rem; background: #f5f5f4; padding: .1em .35em; font-family: ui-monospace, monospace; font-size: .9em; }
+.article-markdown hr { margin: 1.5em 0; border-color: #e7e5e4; }
+.article-markdown a { color: #b45309; text-decoration: underline; text-underline-offset: 3px; }
+.article-markdown img { display: block; max-width: 100%; max-height: 36rem; margin: 1.25rem auto; border-radius: 1rem; object-fit: contain; }
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Cascadia Code", Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.edit-page-bg {
+  background:
+    radial-gradient(ellipse at 15% 12%, rgb(251 191 36 / 13%), transparent 36%),
+    radial-gradient(ellipse at 90% 75%, rgb(234 88 12 / 9%), transparent 34%),
+    #fafaf9;
+}
+
+.edit-orb {
+  position: absolute;
+  z-index: 0;
+  width: 16rem;
+  height: 16rem;
+  border: 1px solid rgb(217 119 6 / 12%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(251 191 36 / 11%), transparent 68%);
+  pointer-events: none;
+}
+
+.edit-orb-one {
+  top: 8rem;
+  left: max(-7rem, calc((100vw - 70rem) / 2 - 15rem));
+  animation: edit-drift 11s ease-in-out infinite;
+}
+
+.edit-orb-two {
+  right: max(-7rem, calc((100vw - 70rem) / 2 - 15rem));
+  bottom: 3rem;
+  width: 12rem;
+  height: 12rem;
+  animation: edit-drift 14s ease-in-out infinite reverse;
+}
+
+.edit-panel-enter {
+  animation: edit-enter 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.edit-form-card {
+  animation-delay: 90ms;
+  transition: box-shadow 250ms ease, transform 250ms ease;
+}
+
+.edit-form-card:hover {
+  box-shadow: 0 24px 60px -32px rgb(120 53 15 / 25%);
+}
+
+.edit-icon-float {
+  animation: edit-float 3.8s ease-in-out infinite;
+}
+
+.edit-icon-pulse {
+  animation: edit-pulse 1.8s ease-in-out infinite;
+}
+
+.reader-enter {
+  animation: edit-enter 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.reader-heading {
+  animation: edit-enter 800ms 100ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.reader-excerpt {
+  animation: edit-enter 800ms 180ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.reader-content {
+  animation: edit-enter 900ms 260ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.reader-book-float {
+  animation: edit-float 3.8s ease-in-out infinite;
+}
+
+.reader-end-mark {
+  animation: edit-pulse 3s ease-in-out infinite;
+}
+
+.page-enter {
+  animation: edit-enter 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.page-card {
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.page-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(217 119 6 / 28%);
+  box-shadow: 0 24px 60px -34px rgb(120 53 15 / 28%);
+}
+
+@keyframes edit-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes edit-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(14px, -18px, 0); }
+}
+
+@keyframes edit-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-7px) rotate(2deg); }
+}
+
+@keyframes edit-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(217 119 6 / 0%); }
+  50% { box-shadow: 0 0 0 8px rgb(217 119 6 / 8%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edit-panel-enter,
+  .edit-orb,
+  .edit-icon-float,
+  .edit-icon-pulse,
+  .reader-enter,
+  .reader-heading,
+  .reader-excerpt,
+  .reader-content,
+  .reader-book-float,
+  .reader-end-mark {
+    animation: none;
+  }
+
+  .page-enter {
+    animation: none;
+  }
+
+  .edit-form-card,
+  .edit-form-card:hover,
+  .page-card,
+  .page-card:hover {
+    transition: none;
+    transform: none;
+  }
+}

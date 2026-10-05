@@ -1,0 +1,12 @@
+import Link from "next/link";
+
+const items = [
+  ["Informasi akun", "Nama dan email digunakan untuk akun, masuk, dan pemberitahuan terkait layanan. Email tidak ditampilkan pada halaman profil publik."],
+  ["Profil penulis", "Jika kamu mengajukan diri sebagai penulis, nama pena, foto profil, bio, dan artikel yang diterbitkan dapat dilihat pengunjung. Nomor telepon biodata hanya untuk keperluan pengelolaan dan tidak ditampilkan secara publik."],
+  ["Aktivitas", "Artikel favorit, komentar, dan laporan diproses agar fitur RuangBaca berfungsi. Statistik pembaca menghitung akun yang login dan satu pembaca hanya dihitung sekali per artikel."],
+  ["Kontrol akun", "Kamu dapat memperbarui biodata, mengganti password, mengeluarkan sesi di perangkat lain, atau menghapus akun melalui menu profil dan halaman Keamanan akun."],
+];
+
+export default function PrivacyPage() {
+  return <main className="edit-page-bg relative min-h-screen overflow-hidden px-5 py-12 text-stone-900 sm:px-8"><div aria-hidden="true" className="edit-orb edit-orb-one"/><div aria-hidden="true" className="edit-orb edit-orb-two"/><div className="page-enter relative mx-auto max-w-4xl"><Link href="/" className="inline-flex transition hover:-translate-x-1">← Kembali ke RuangBaca</Link><header className="mt-8 flex items-center gap-4"><span className="edit-icon-float rounded-2xl bg-sky-100 p-3 text-sky-800"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-7 w-7"><path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-3Z"/><path d="M9 12h6m-3-3v6"/></svg></span><div><p className="text-xs font-bold uppercase tracking-[.2em] text-sky-800">Data dan kendalimu</p><h1 className="mt-1 text-3xl font-bold sm:text-4xl">Privasi di RuangBaca</h1></div></header><p className="mt-5 text-lg leading-8 text-stone-600">Kami berusaha hanya menampilkan informasi yang diperlukan untuk pengalaman membaca dan menulis.</p><div className="mt-8 space-y-4">{items.map(([title, body], index) => <article key={title} style={{ animationDelay: `${index * 80}ms` }} className="page-enter page-card rounded-2xl border border-stone-200 bg-white/90 p-6"><h2 className="text-lg font-bold">{title}</h2><p className="mt-2 leading-7 text-stone-600">{body}</p></article>)}</div><p className="mt-8 text-sm leading-6 text-stone-500">Jangan memasukkan informasi rahasia ke dalam artikel atau komentar publik. Untuk menghapus akun, buka menu profil → Keamanan akun.</p></div></main>;
+}
